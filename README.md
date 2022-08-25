@@ -29,9 +29,10 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 
 1. Add a scroll view, set class of the scroll view to `InteractiveImageView`.
 2. Dimession of the scroll view must be: equal width and equal height, for example 400x400.
-3. Configure view with `interactiveImageView.configure(...)`
-4. Add delegates `interactiveImageView.interactiveImageViewDelegate = self`
-5. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
+3. import InteractiveImageView
+4. Configure view with `interactiveImageView.configure(...)`
+5. Add delegates `interactiveImageView.interactiveImageViewDelegate = self`
+6. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
 
 ## Installation
 
