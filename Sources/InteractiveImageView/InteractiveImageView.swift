@@ -86,7 +86,7 @@ public class InteractiveImageView: UIScrollView {
 
 // MARK: - InteractiveImageViewProtocol
 
-extension InteractiveImageView: InteractiveImageViewProtocol {
+public extension InteractiveImageView: InteractiveImageViewProtocol {
     func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage) {
 
         // Setup private properties
