@@ -26,7 +26,7 @@ public class InteractiveImageView: UIScrollView {
 
     // MARK: - Properties
 
-    weak var interactiveImageViewDelegate: InteractiveImageViewDelegate?
+    public weak var interactiveImageViewDelegate: InteractiveImageViewDelegate?
 
     private var imageView: UIImageView? = nil
     private var imageContentMode: IIVContentMode = .widthFill
