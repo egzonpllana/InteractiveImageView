@@ -86,8 +86,8 @@ public class InteractiveImageView: UIScrollView {
 
 // MARK: - InteractiveImageViewProtocol
 
-public extension InteractiveImageView: InteractiveImageViewProtocol {
-    func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage) {
+extension InteractiveImageView: InteractiveImageViewProtocol {
+    public func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage) {
 
         // Setup private properties
         self.nextContentMode = nextContentMode
@@ -107,7 +107,7 @@ public extension InteractiveImageView: InteractiveImageViewProtocol {
         DispatchQueue.main.async { self.refresh() }
     }
 
-    func toggleImageContentMode() {
+    public func toggleImageContentMode() {
         guard let configuredImage = configuredImage else {
             interactiveImageViewDelegate?.didFailTogglingContentMode()
             return
@@ -117,7 +117,7 @@ public extension InteractiveImageView: InteractiveImageViewProtocol {
         setImage(configuredImage)
     }
 
-    func cropImage() {
+    public func cropImage() {
         guard let imageView = imageView else {
             interactiveImageViewDelegate?.didFailToGetImageView()
             return
