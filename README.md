@@ -72,7 +72,7 @@ https://github.com/egzonpllana/InteractiveImageView.git
 
 ## Backstory
 
-So, why was this made? While I was working on a project to provide a custom image crop based on given aspect ration, I could not find a 
+So, why was this made? While I was working on a project to provide an interactive image view based on given aspect ration, I could not find a suitable solution that offers all in one these features working in a single view without a need for a viewcontroller, so I build it.
 
 ## Questions or feedback?
 
