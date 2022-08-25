@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol InteractiveImageViewDelegate: UIScrollViewDelegate {
+public protocol InteractiveImageViewDelegate: UIScrollViewDelegate {
     func didCropImage(image: UIImage)
     func didFailImageCropping()
     func didFailTogglingContentMode()
@@ -16,7 +16,7 @@ protocol InteractiveImageViewDelegate: UIScrollViewDelegate {
     func didFailToGetImageView()
 }
 
-protocol InteractiveImageViewProtocol {
+public protocol InteractiveImageViewProtocol {
     func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset initialOffset: IIVFocusOffset, withImage image: UIImage)
     func toggleImageContentMode()
     func cropImage()
