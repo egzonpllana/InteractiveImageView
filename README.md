@@ -19,7 +19,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 
 ## Features
 
-- [X] Handy and simple way of using these features as a UIView, no need to present or configure a viewcontroller.
+- [X] Use at any place as UIView, no need to present or configure a viewcontroller.
 - [X] Crop image at current position as user wants.
 - [X] Scroll image view on x and y axis.
 - [X] Double tap to zoom in or zoom out.
