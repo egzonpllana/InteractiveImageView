@@ -39,6 +39,9 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 You can download and run example project `InteractiveImageViewExample`. Its very useful to see how contraints of the view are set to make it work properly.
 
 ### Preview
+<p align="left">
+    <img src="example-preview.gif" height="600" max-height="50%" alt=“InteractiveImageView” />
+</p>
 
 ## Installation
 
