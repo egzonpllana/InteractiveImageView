@@ -27,6 +27,17 @@ public class InteractiveImageView: UIView {
     // MARK: - Properties
 
     public weak var interactiveImageViewDelegate: InteractiveImageViewDelegate?
+    public var isScrollEnabled: Bool = true {
+        didSet {
+            scrollView.isScrollEnabled = isScrollEnabled
+        }
+    }
+    public var isPinchAllowed: Bool = true {
+        didSet {
+            scrollView.pinchGestureRecognizer?.isEnabled = isPinchAllowed
+        }
+    }
+    public var isDoubleTapToZoomAllowed: Bool = true
 
     private var scrollView: UIScrollView = UIScrollView()
     private var imageView: UIImageView? = nil
@@ -54,13 +65,22 @@ public class InteractiveImageView: UIView {
     }
 
     private func initialize() {
+        // Setup scroll view properties
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.bouncesZoom = true
         scrollView.decelerationRate = UIScrollView.DecelerationRate.fast
         scrollView.delegate = self
 
+        // A workaround to setup pinchGestureRecognizer
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.scrollView.pinchGestureRecognizer?.isEnabled = self.isPinchAllowed
+        }
+
+        // Add scroll view as a subview
         self.addSubview(scrollView)
+
+        // Add scroll view constraints
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -69,6 +89,7 @@ public class InteractiveImageView: UIView {
             scrollView.heightAnchor.constraint(equalToConstant: self.bounds.height),
         ])
 
+        // Add observer for: changeOrientationNotification
         NotificationCenter.default.addObserver(self, selector: #selector(InteractiveImageView.changeOrientationNotification), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
@@ -349,6 +370,9 @@ private extension InteractiveImageView {
     }
 
     @objc private func doubleTapGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
+        // make sure Zoom is allowed
+        guard isDoubleTapToZoomAllowed else { return }
+
         // zoom out if it bigger than the scale factor after double-tap scaling. Else, zoom in
         let zoomFactorWhenDoubleTap: CGFloat = 2.0
         if scrollView.zoomScale >= scrollView.minimumZoomScale * zoomFactorWhenDoubleTap - 0.01 {
