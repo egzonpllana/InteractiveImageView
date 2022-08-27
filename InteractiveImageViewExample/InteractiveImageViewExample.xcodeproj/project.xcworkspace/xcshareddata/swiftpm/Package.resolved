@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "interactiveimageview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/egzonpllana/InteractiveImageView.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "22fac185ee4ee0817f8916803626330033494e92"
+      }
+    }
+  ],
+  "version" : 2
+}

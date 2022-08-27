@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="InteractiveImageViewExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA3-2f-WkI">
+                                <rect key="frame" x="16" y="52" width="110.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Row-fi-xbp" customClass="InteractiveImageView" customModule="InteractiveImageView">
+                                <rect key="frame" x="16" y="81" width="382" height="382"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Row-fi-xbp" secondAttribute="height" multiplier="1:1" id="7fR-gV-zfU"/>
+                                    <constraint firstAttribute="width" constant="382" id="hks-TF-unG"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iod-Zd-dhV">
+                                <rect key="frame" x="24" y="415" width="366" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65t-1i-eHc">
+                                        <rect key="frame" x="0.0" y="0.0" width="78" height="40"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Toggle" image="rectangle.expand.vertical" catalog="system"/>
+                                        <connections>
+                                            <action selector="changeContentModePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3rV-Fy-pOM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tii-xg-9Yq">
+                                        <rect key="frame" x="303.5" y="0.0" width="62.5" height="40"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="wiH-Mq-ehP"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Crop" image="crop" catalog="system"/>
+                                        <connections>
+                                            <action selector="cropImagePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cmX-F1-WJW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cropped image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7K-fi-SXS">
+                                <rect key="frame" x="16" y="475" width="117" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oez-kr-SPR">
+                                <rect key="frame" x="16" y="503.5" width="382" height="342.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Iod-Zd-dhV" firstAttribute="leading" secondItem="Row-fi-xbp" secondAttribute="leading" constant="8" id="5ST-Ci-mJA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oez-kr-SPR" secondAttribute="trailing" constant="16" id="Q5w-Z4-4rj"/>
+                            <constraint firstItem="oez-kr-SPR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="T5P-E6-9rI"/>
+                            <constraint firstItem="Row-fi-xbp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UVQ-fR-atE"/>
+                            <constraint firstItem="oez-kr-SPR" firstAttribute="top" secondItem="C7K-fi-SXS" secondAttribute="bottom" constant="8" id="WXu-1u-osA"/>
+                            <constraint firstItem="IA3-2f-WkI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="WwK-pL-52r"/>
+                            <constraint firstItem="IA3-2f-WkI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="X04-QA-caU"/>
+                            <constraint firstItem="Row-fi-xbp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="Yzi-gF-o87"/>
+                            <constraint firstItem="Iod-Zd-dhV" firstAttribute="trailing" secondItem="Row-fi-xbp" secondAttribute="trailing" constant="-8" id="aYL-0P-KYp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oez-kr-SPR" secondAttribute="bottom" constant="16" id="at9-Kf-2Ma"/>
+                            <constraint firstItem="C7K-fi-SXS" firstAttribute="top" secondItem="Row-fi-xbp" secondAttribute="bottom" constant="12" id="dRY-8v-Xjm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IA3-2f-WkI" secondAttribute="trailing" symbolic="YES" id="tZs-5K-kFF"/>
+                            <constraint firstItem="Iod-Zd-dhV" firstAttribute="bottom" secondItem="Row-fi-xbp" secondAttribute="bottom" constant="-8" id="vEf-rr-zXI"/>
+                            <constraint firstItem="C7K-fi-SXS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="x3e-Gm-vQw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="croppedImageView" destination="oez-kr-SPR" id="Lii-nb-SUo"/>
+                        <outlet property="imageView" destination="Row-fi-xbp" id="pYl-zX-qWs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="83.705357142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crop" catalog="system" width="128" height="116"/>
+        <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
