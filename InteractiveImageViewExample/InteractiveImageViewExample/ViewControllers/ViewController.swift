@@ -28,9 +28,16 @@ class ViewController: UIViewController {
     // MARK: - Methods
 
     private func configureImageView() {
+        // Setup imageView
         let imageExample = #imageLiteral(resourceName: "image.png")
         imageView.configure(withNextContentMode: .customOffset(offset: Double(2)/Double(3)), withFocusOffset: .center, withImage: imageExample)
         imageView.interactiveImageViewDelegate = self
+
+        // Controll imageView user actions
+        imageView.isScrollEnabled = true
+        imageView.isDoubleTapToZoomAllowed = true
+        imageView.isPinchAllowed = true
+
     }
 
     // MARK: - Actions
