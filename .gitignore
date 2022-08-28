@@ -1,6 +1,7 @@
 ## Build generated
 build/
 DerivedData/
+*/xcuserdata/*
 
 # Swift Package Manager
 #
