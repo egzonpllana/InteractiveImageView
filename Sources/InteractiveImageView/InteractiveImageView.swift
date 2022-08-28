@@ -26,7 +26,7 @@ public class InteractiveImageView: UIView {
 
     // MARK: - Properties
 
-    public weak var interactiveImageViewDelegate: InteractiveImageViewDelegate?
+    public weak var delegate: InteractiveImageViewDelegate?
     public var isScrollEnabled: Bool = true {
         didSet {
             scrollView.isScrollEnabled = isScrollEnabled
@@ -140,7 +140,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
 
     public func toggleImageContentMode() {
         guard let configuredImage = configuredImage else {
-            interactiveImageViewDelegate?.didFailTogglingContentMode()
+            delegate?.didFailTogglingContentMode()
             return
         }
 
@@ -150,7 +150,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
 
     public func cropImage() {
         guard let imageView = imageView else {
-            interactiveImageViewDelegate?.didFailToGetImageView()
+            delegate?.didFailToGetImageView()
             return
         }
         let scrollViewFrameX = self.frame.origin.x
@@ -170,9 +170,9 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
                                      viewWidth: IIVImageRect.getImageRect(fromImageView: imageView).width,
                                      viewHeight: self.imageView!.frame.height)
         if let image = croppedImage {
-            self.interactiveImageViewDelegate?.didCropImage(image: image)
+            self.delegate?.didCropImage(image: image)
         } else {
-            self.interactiveImageViewDelegate?.didFailImageCropping()
+            self.delegate?.didFailImageCropping()
         }
     }
 }
@@ -226,7 +226,7 @@ private extension InteractiveImageView {
 
     func adjustFrameToCenterWhenZoomed() {
         guard let unwrappedZoomView = imageView else {
-            interactiveImageViewDelegate?.didFailAdjustingFramesWhenZooming()
+            delegate?.didFailAdjustingFramesWhenZooming()
             return
         }
         var frameToCenter = unwrappedZoomView.frame

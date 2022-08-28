@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         // Setup imageView
         let imageExample = #imageLiteral(resourceName: "image.png")
         imageView.configure(withNextContentMode: .customOffset(offset: Double(2)/Double(3)), withFocusOffset: .center, withImage: imageExample)
-        imageView.interactiveImageViewDelegate = self
+        imageView.delegate = self
 
         // Controll imageView user actions
         imageView.isScrollEnabled = true
