@@ -40,7 +40,7 @@ You can download and run example project `InteractiveImageViewExample`. Its very
 
 ### Preview
 <p align="left">
-    <img src="example-preview.gif" height="600" max-height="50%" alt=“InteractiveImageView” />
+    <img src="example-preview.gif" height="380" max-height="50%" alt=“InteractiveImageView” />
 </p>
 
 ## Installation
