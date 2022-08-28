@@ -32,7 +32,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 2. Use AspectRatio for height, set width manually. See Example Project.
 3. In your view controller, import InteractiveImageView.
 4. Connected view outlet, configure it with `interactiveImageView.configure(...)`
-5. Add delegates `interactiveImageView.interactiveImageViewDelegate = self`
+5. Add delegates `interactiveImageView.delegate = self`
 6. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
         
 ## Control user actions
