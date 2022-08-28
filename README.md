@@ -34,13 +34,18 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 4. Connected view outlet, configure it with `interactiveImageView.configure(...)`
 5. Add delegates `interactiveImageView.interactiveImageViewDelegate = self`
 6. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
+        
+## Control user actions
+- Double tap to zoom: `interactiveImageView.isDoubleTapToZoomAllowed`
+- Scroll view: `interactiveImageView.isScrollEnabled`
+- Pinch gesture: `interactiveImageView.isPinchAllowed`
 
 ## Example Project
 You can download and run example project `InteractiveImageViewExample`. Its very useful to see how contraints of the view are set to make it work properly.
 
 ### Preview
 <p align="left">
-    <img src="example-preview.gif" height="380" max-height="50%" alt=“InteractiveImageView” />
+    <img src="example-preview.gif" width="380" max-height="50%" alt=“InteractiveImageView” />
 </p>
 
 ## Installation
