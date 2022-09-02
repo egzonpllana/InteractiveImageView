@@ -72,4 +72,12 @@ extension ViewController: InteractiveImageViewDelegate {
     func didFailToGetImageView() {
         //
     }
+
+    func didScrollAt(offset: CGPoint, scale: CGFloat) {
+        //
+    }
+
+    func didZoomAt(offset: CGPoint, scale: CGFloat) {
+        //
+    }
 }
