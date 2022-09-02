@@ -19,6 +19,7 @@ public protocol InteractiveImageViewDelegate: AnyObject {
 public protocol InteractiveImageViewProtocol {
     func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset initialOffset: IIVFocusOffset, withImage image: UIImage)
     func toggleImageContentMode()
+    func setContentOffset(_ offset: CGPoint, animated: Bool, zoomScale: CGFloat)
     func cropImage()
 }
 
@@ -174,6 +175,11 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         } else {
             self.delegate?.didFailImageCropping()
         }
+    }
+
+    public func setContentOffset(_ offset: CGPoint, animated: Bool, zoomScale: CGFloat) {
+        scrollView.setZoomScale(zoomScale, animated: false)
+        scrollView.setContentOffset(offset, animated: animated)
     }
 }
 
