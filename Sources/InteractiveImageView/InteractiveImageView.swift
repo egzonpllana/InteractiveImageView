@@ -14,6 +14,8 @@ public protocol InteractiveImageViewDelegate: AnyObject {
     func didFailTogglingContentMode()
     func didFailAdjustingFramesWhenZooming()
     func didFailToGetImageView()
+    func didScrollAt(offset: CGPoint, scale: CGFloat)
+    func didZoomAt(offset: CGPoint, scale: CGFloat)
 }
 
 public protocol InteractiveImageViewProtocol {
@@ -403,7 +405,9 @@ extension InteractiveImageView: UIScrollViewDelegate {
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) { }
 
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) { }
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        delegate?.didScrollAt(offset: CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y), scale: scrollView.zoomScale)
+    }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) { }
 
@@ -415,7 +419,9 @@ extension InteractiveImageView: UIScrollViewDelegate {
 
     public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) { }
 
-    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) { }
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        delegate?.didZoomAt(offset: scrollView.contentOffset, scale: scrollView.zoomScale)
+    }
 
     public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         return false
