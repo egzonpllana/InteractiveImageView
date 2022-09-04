@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         // Controll imageView user actions
         imageView.isScrollEnabled = true
         imageView.isDoubleTapToZoomAllowed = true
-        imageView.isPinchAllowed = true
+        imageView.isPinchAllowed = false
 
     }
 
