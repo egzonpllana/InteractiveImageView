@@ -44,7 +44,7 @@ public class InteractiveImageView: UIView {
 
     private var scrollView: UIScrollView = UIScrollView()
     private var imageView: UIImageView? = nil
-    private var imageContentMode: IIVContentMode = .widthFill
+    private var imageContentMode: IIVContentMode = .heightFill
     private var nextContentMode: IIVContentMode = .aspectFit
     private var configuredImage: UIImage? = nil
     private var imageSize: CGSize = CGSize.zero
