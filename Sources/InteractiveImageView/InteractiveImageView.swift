@@ -156,15 +156,9 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
             delegate?.didFailToGetImageView()
             return
         }
-        let scrollViewFrameX = self.frame.origin.x
-        let imageViewFrameX = IIVImageRect.getImageRect(fromImageView: imageView).origin.x
-        let framesOnX = scrollViewFrameX - imageViewFrameX
 
-        // Crop image based on: image width is smaller than scroll view width or not.
-        let cropOffsetOnX: CGFloat = (framesOnX > 0) ? (scrollViewOffsetX - (2*imageViewFrameX)) : framesOnX
-
-        let cropRect = CGRect(x: cropOffsetOnX,
-                              y: scrollViewOffsetY - IIVImageRect.getImageRect(fromImageView: imageView).origin.y,
+        let cropRect = CGRect(x: scrollViewOffsetX,
+                              y: scrollViewOffsetY,
                               width: self.frame.width,
                               height: self.frame.height)
 
