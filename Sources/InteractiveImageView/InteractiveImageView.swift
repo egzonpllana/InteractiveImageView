@@ -88,8 +88,8 @@ public class InteractiveImageView: UIView {
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             scrollView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            scrollView.widthAnchor.constraint(equalToConstant: self.bounds.width),
-            scrollView.heightAnchor.constraint(equalToConstant: self.bounds.height),
+            scrollView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            scrollView.heightAnchor.constraint(equalTo: self.heightAnchor),
         ])
 
         // Add observer for: changeOrientationNotification
