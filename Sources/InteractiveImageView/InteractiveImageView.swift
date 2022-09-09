@@ -9,17 +9,17 @@
 import UIKit
 
 public protocol InteractiveImageViewDelegate: AnyObject {
-    func didCropImage(image: UIImage)
+    func didCropImage(image: UIImage, fromView: InteractiveImageView)
+    func didScrollAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
+    func didZoomAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
     func didFailImageCropping()
     func didFailTogglingContentMode()
     func didFailAdjustingFramesWhenZooming()
     func didFailToGetImageView()
-    func didScrollAt(offset: CGPoint, scale: CGFloat)
-    func didZoomAt(offset: CGPoint, scale: CGFloat)
 }
 
 public protocol InteractiveImageViewProtocol {
-    func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset initialOffset: IIVFocusOffset, withImage image: UIImage)
+    func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage, withIdentifier identifier: Int)
     func toggleImageContentMode()
     func setContentOffset(_ offset: CGPoint, animated: Bool, zoomScale: CGFloat)
     func cropImage()
@@ -44,7 +44,7 @@ public class InteractiveImageView: UIView {
 
     private var scrollView: UIScrollView = UIScrollView()
     private var imageView: UIImageView? = nil
-    private var imageContentMode: IIVContentMode = .heightFill
+    private var imageContentMode: IIVContentMode = .aspectFill
     private var nextContentMode: IIVContentMode = .aspectFit
     private var configuredImage: UIImage? = nil
     private var imageSize: CGSize = CGSize.zero
@@ -121,13 +121,16 @@ public class InteractiveImageView: UIView {
 // MARK: - InteractiveImageViewProtocol
 
 extension InteractiveImageView: InteractiveImageViewProtocol {
-    public func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage) {
+    public func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage, withIdentifier identifier: Int) {
 
         // Setup private properties
         self.nextContentMode = nextContentMode
         self.configuredImage = image
         self.initialOffset = focusOffset
         self.setImage(image)
+
+        // Set view identifier
+        self.tag = identifier
 
         // get top super view
         var topSupperView = superview
@@ -167,7 +170,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
                                      viewWidth: IIVImageRect.getImageRect(fromImageView: imageView).width,
                                      viewHeight: self.imageView!.frame.height)
         if let image = croppedImage {
-            self.delegate?.didCropImage(image: image)
+            self.delegate?.didCropImage(image: image, fromView: self)
         } else {
             self.delegate?.didFailImageCropping()
         }
@@ -400,7 +403,7 @@ extension InteractiveImageView: UIScrollViewDelegate {
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) { }
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        delegate?.didScrollAt(offset: CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y), scale: scrollView.zoomScale)
+        delegate?.didScrollAt(offset: CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y), scale: scrollView.zoomScale, fromView: self)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) { }
@@ -414,7 +417,7 @@ extension InteractiveImageView: UIScrollViewDelegate {
     public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) { }
 
     public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        delegate?.didZoomAt(offset: scrollView.contentOffset, scale: scrollView.zoomScale)
+        delegate?.didZoomAt(offset: scrollView.contentOffset, scale: scrollView.zoomScale, fromView: self)
     }
 
     public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
