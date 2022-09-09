@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     private func configureImageView() {
         // Setup imageView
         let imageExample = #imageLiteral(resourceName: "image.png")
-        imageView.configure(withNextContentMode: .customOffset(offset: Double(2)/Double(3)), withFocusOffset: .center, withImage: imageExample)
+        imageView.configure(withNextContentMode: .customOffset(offset: Double(2)/Double(3)), withFocusOffset: .center, withImage: imageExample, withIdentifier: 0)
         imageView.delegate = self
 
         // Controll imageView user actions
@@ -53,8 +53,16 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: InteractiveImageViewDelegate {
-    func didCropImage(image: UIImage) {
+    func didCropImage(image: UIImage, fromView: InteractiveImageView) {
         self.croppedImageView.image = image
+    }
+
+    func didScrollAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView) {
+        //
+    }
+
+    func didZoomAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView) {
+        //
     }
 
     func didFailImageCropping() {
@@ -70,14 +78,6 @@ extension ViewController: InteractiveImageViewDelegate {
     }
 
     func didFailToGetImageView() {
-        //
-    }
-
-    func didScrollAt(offset: CGPoint, scale: CGFloat) {
-        //
-    }
-
-    func didZoomAt(offset: CGPoint, scale: CGFloat) {
         //
     }
 }
