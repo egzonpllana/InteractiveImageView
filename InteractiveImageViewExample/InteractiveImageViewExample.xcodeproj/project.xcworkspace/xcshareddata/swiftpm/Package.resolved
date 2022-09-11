@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/egzonpllana/InteractiveImageView.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "c07844f8344110bec58a7fe3238482deea533dc2"
+        "revision" : "c07844f8344110bec58a7fe3238482deea533dc2",
+        "version" : "1.0.21"
       }
     }
   ],

@@ -14,8 +14,7 @@
 		52EEC9F128B80733005C92BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EEC9EF28B80733005C92BA /* Main.storyboard */; };
 		52EEC9F328B80734005C92BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52EEC9F228B80734005C92BA /* Assets.xcassets */; };
 		52EEC9F628B80734005C92BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EEC9F428B80734005C92BA /* LaunchScreen.storyboard */; };
-		52EEC9FF28B8075C005C92BA /* InteractiveImageView in Frameworks */ = {isa = PBXBuildFile; productRef = 52EEC9FE28B8075C005C92BA /* InteractiveImageView */; };
-		52EECA0228B80A7E005C92BA /* InteractiveImageView in Frameworks */ = {isa = PBXBuildFile; productRef = 52EECA0128B80A7E005C92BA /* InteractiveImageView */; };
+		52F88FC928CE0EB700B334A8 /* InteractiveImageView in Frameworks */ = {isa = PBXBuildFile; productRef = 52F88FC828CE0EB700B334A8 /* InteractiveImageView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52EECA0228B80A7E005C92BA /* InteractiveImageView in Frameworks */,
-				52EEC9FF28B8075C005C92BA /* InteractiveImageView in Frameworks */,
+				52F88FC928CE0EB700B334A8 /* InteractiveImageView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,8 +105,7 @@
 			);
 			name = InteractiveImageViewExample;
 			packageProductDependencies = (
-				52EEC9FE28B8075C005C92BA /* InteractiveImageView */,
-				52EECA0128B80A7E005C92BA /* InteractiveImageView */,
+				52F88FC828CE0EB700B334A8 /* InteractiveImageView */,
 			);
 			productName = InteractiveImageViewExample;
 			productReference = 52EEC9E628B80733005C92BA /* InteractiveImageViewExample.app */;
@@ -139,8 +136,7 @@
 			);
 			mainGroup = 52EEC9DD28B80733005C92BA;
 			packageReferences = (
-				52EEC9FD28B8075C005C92BA /* XCRemoteSwiftPackageReference "InteractiveImageView" */,
-				52EECA0028B80A7E005C92BA /* XCRemoteSwiftPackageReference "InteractiveImageView" */,
+				52F88FC728CE0EB700B334A8 /* XCRemoteSwiftPackageReference "InteractiveImageView" */,
 			);
 			productRefGroup = 52EEC9E728B80733005C92BA /* Products */;
 			projectDirPath = "";
@@ -392,7 +388,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		52EEC9FD28B8075C005C92BA /* XCRemoteSwiftPackageReference "InteractiveImageView" */ = {
+		52F88FC728CE0EB700B334A8 /* XCRemoteSwiftPackageReference "InteractiveImageView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/egzonpllana/InteractiveImageView.git";
 			requirement = {
@@ -400,25 +396,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		52EECA0028B80A7E005C92BA /* XCRemoteSwiftPackageReference "InteractiveImageView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/egzonpllana/InteractiveImageView.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		52EEC9FE28B8075C005C92BA /* InteractiveImageView */ = {
+		52F88FC828CE0EB700B334A8 /* InteractiveImageView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 52EEC9FD28B8075C005C92BA /* XCRemoteSwiftPackageReference "InteractiveImageView" */;
-			productName = InteractiveImageView;
-		};
-		52EECA0128B80A7E005C92BA /* InteractiveImageView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 52EECA0028B80A7E005C92BA /* XCRemoteSwiftPackageReference "InteractiveImageView" */;
+			package = 52F88FC728CE0EB700B334A8 /* XCRemoteSwiftPackageReference "InteractiveImageView" */;
 			productName = InteractiveImageView;
 		};
 /* End XCSwiftPackageProductDependency section */
