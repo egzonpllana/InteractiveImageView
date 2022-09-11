@@ -12,10 +12,7 @@ public protocol InteractiveImageViewDelegate: AnyObject {
     func didCropImage(image: UIImage, fromView: InteractiveImageView)
     func didScrollAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
     func didZoomAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
-    func didFailImageCropping()
-    func didFailTogglingContentMode()
-    func didFailAdjustingFramesWhenZooming()
-    func didFailToGetImageView()
+    func didFail(_ fail: IIVFailType)
 }
 
 public protocol InteractiveImageViewProtocol {
@@ -162,7 +159,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
 
     public func toggleImageContentMode() {
         guard let configuredImage = configuredImage else {
-            delegate?.didFailTogglingContentMode()
+            delegate?.didFail(.togglingContentMode)
             return
         }
 
@@ -172,7 +169,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
 
     public func cropImage() {
         guard let imageView = imageView else {
-            delegate?.didFailToGetImageView()
+            delegate?.didFail(.toGetImageView)
             return
         }
 
@@ -188,7 +185,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         if let image = croppedImage {
             self.delegate?.didCropImage(image: image, fromView: self)
         } else {
-            self.delegate?.didFailImageCropping()
+            delegate?.didFail(.imageCropping)
         }
     }
 
@@ -247,7 +244,7 @@ private extension InteractiveImageView {
 
     func adjustFrameToCenterWhenZoomed() {
         guard let unwrappedZoomView = imageView else {
-            delegate?.didFailAdjustingFramesWhenZooming()
+            delegate?.didFail(.adjustingFramesWhenZooming)
             return
         }
         var frameToCenter = unwrappedZoomView.frame
