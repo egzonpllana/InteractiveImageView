@@ -54,7 +54,7 @@ class ViewController: UIViewController {
 
 extension ViewController: InteractiveImageViewDelegate {
     func didCropImage(image: UIImage, fromView: InteractiveImageView) {
-        self.croppedImageView.image = image
+        croppedImageView.image = image
     }
 
     func didScrollAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView) {
@@ -65,19 +65,7 @@ extension ViewController: InteractiveImageViewDelegate {
         //
     }
 
-    func didFailImageCropping() {
-        //
-    }
-
-    func didFailTogglingContentMode() {
-        //
-    }
-
-    func didFailAdjustingFramesWhenZooming() {
-        //
-    }
-
-    func didFailToGetImageView() {
+    func didFail(_ fail: IIVFailType) {
         //
     }
 }
