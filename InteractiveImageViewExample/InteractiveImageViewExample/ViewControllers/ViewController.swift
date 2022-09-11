@@ -48,7 +48,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func cropImagePressed(_ sender: Any) {
-        imageView.cropImage()
+        // Crop: Method 1
+        imageView.performCropImage()
+
+        // Crop: Method 2
+        // Use direct crop image method.
+        // croppedImageView.image = imageView.cropAndGetImage()
     }
 }
 
