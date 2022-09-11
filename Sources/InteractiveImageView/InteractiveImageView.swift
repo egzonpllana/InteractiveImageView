@@ -34,8 +34,12 @@ public protocol InteractiveImageViewProtocol {
     /// Toggle between initial content mode (aspectFill) and nextContentMode.
     func toggleImageContentMode()
 
-    /// Crop visible image.
-    func cropImage()
+    /// Perform croping image process visible image and listen to delegates to get cropped image.
+    func performCropImage()
+
+    /// Crop and get presented image.
+    /// - Returns: Returns image croped at current visible content.
+    func cropAndGetImage() -> UIImage?
 }
 
 public class InteractiveImageView: UIView {
@@ -167,21 +171,8 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         setImage(configuredImage)
     }
 
-    public func cropImage() {
-        guard let imageView = imageView else {
-            delegate?.didFail(.toGetImageView)
-            return
-        }
-
-        let cropRect = CGRect(x: scrollViewOffsetX,
-                              y: scrollViewOffsetY,
-                              width: self.frame.width,
-                              height: self.frame.height)
-
-        let croppedImage = IIVCropHandler.cropImage(imageView.image!,
-                                                                     toRect: cropRect,
-                                     viewWidth: IIVImageRect.getImageRect(fromImageView: imageView).width,
-                                     viewHeight: self.imageView!.frame.height)
+    public func performCropImage() {
+        let croppedImage = cropImage()
         if let image = croppedImage {
             self.delegate?.didCropImage(image: image, fromView: self)
         } else {
@@ -193,6 +184,10 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         scrollView.setZoomScale(zoomScale, animated: false)
         scrollView.setContentOffset(offset, animated: animated)
     }
+
+    public func cropAndGetImage() -> UIImage? {
+        return cropImage()
+    }
 }
 
 // MARK: - Private extension
@@ -201,6 +196,24 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
 // https://github.com/huynguyencong/ImageScrollView
 
 private extension InteractiveImageView {
+
+    func cropImage() -> UIImage? {
+        guard let imageView = imageView else {
+            delegate?.didFail(.toGetImageView)
+            return nil
+        }
+
+        let cropRect = CGRect(x: scrollViewOffsetX,
+                              y: scrollViewOffsetY,
+                              width: self.frame.width,
+                              height: self.frame.height)
+
+        let croppedImage = IIVCropHandler.cropImage(imageView.image!,
+                                                                     toRect: cropRect,
+                                     viewWidth: IIVImageRect.getImageRect(fromImageView: imageView).width,
+                                     viewHeight: self.imageView!.frame.height)
+        return croppedImage
+    }
 
     func setImage(_ image: UIImage) {
         // Remove old view
