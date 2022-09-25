@@ -28,12 +28,10 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 ## How to use
 
 1. Add a view, and set the class of the view view to `InteractiveImageView`.
-2. Dimensions of the view must be equal in width and equal height, for example, 400x400.
-2. Use AspectRatio for height, set width manually. See Example Project.
-3. In your view controller, import InteractiveImageView.
-4. Connected view outlet, configure it with `interactiveImageView.configure(...)`
-5. Add delegates `interactiveImageView.delegate = self`
-6. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
+2. In your view controller, import InteractiveImageView.
+3. Connected view outlet, configure it with `interactiveImageView.configure(...)`
+4. Add delegates `interactiveImageView.delegate = self`
+5. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
         
 ## Control user actions
 - Double tap to zoom: `interactiveImageView.isDoubleTapToZoomAllowed`
