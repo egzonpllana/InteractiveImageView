@@ -29,7 +29,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 
 1. Add a view, and set the class of the view view to `InteractiveImageView`.
 2. In your view controller, import InteractiveImageView.
-3. Connected view outlet, configure it with `interactiveImageView.configure(...)`
+3. Connect view outlet, configure it with `interactiveImageView.configure(...)`
 4. Add delegates `interactiveImageView.delegate = self`
 5. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
         
@@ -37,7 +37,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 #### Configure view
 ```swift
 if let image = UIImage(named: "image.png") {
-    iivView.configure(withNextContentMode: .heightFill,
+    interactiveImageView.configure(withNextContentMode: .heightFill,
                       withFocusOffset: .center,
                       withImage: image,
                       withIdentifier: 0)
