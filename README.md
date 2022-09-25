@@ -25,7 +25,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 - [X] Double tap to zoom in or zoom out.
 - [X] Pinch image view.
 
-## How to use
+## Setup
 
 1. Add a view, and set the class of the view view to `InteractiveImageView`.
 2. In your view controller, import InteractiveImageView.
@@ -33,10 +33,38 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 4. Add delegates `interactiveImageView.delegate = self`
 5. Listen to delegate observers: `extension ViewController: InteractiveImageViewDelegate { ... }`
         
-## Control user actions
-- Double tap to zoom: `interactiveImageView.isDoubleTapToZoomAllowed`
-- Scroll view: `interactiveImageView.isScrollEnabled`
-- Pinch gesture: `interactiveImageView.isPinchAllowed`
+## Methods
+#### Configure view
+```swift
+if let image = UIImage(named: "image.png") {
+    iivView.configure(withNextContentMode: .heightFill,
+                      withFocusOffset: .center,
+                      withImage: image,
+                      withIdentifier: 0)
+}
+```
+#### Crop and get image without delegate methods
+```swift
+let croppedImage = interactiveImageView.cropAndGetImage()
+```
+#### Toggle image content mode
+```swift
+interactiveImageView.toggleImageContentMode()
+```
+
+## User gestures
+#### Double tap to zoom gesture
+```swift
+interactiveImageView.isDoubleTapToZoomAllowed = false
+```
+#### Scroll view
+```swift
+interactiveImageView.isScrollEnabled = false
+```
+#### Pinch to zoom gesture
+```swift
+interactiveImageView.isPinchAllowed = false
+```
 
 ## Example Project
 You can download and run example project `InteractiveImageViewExample`. Its very useful to see how contraints of the view are set to make it work properly.
