@@ -67,7 +67,7 @@ interactiveImageView.isPinchAllowed = false
 ```
 
 ## Example Project
-You can download and run example project `InteractiveImageViewExample`. Its very useful to see how contraints of the view are set to make it work properly.
+You can download and run example project `InteractiveImageViewExample`.
 
 ### Preview
 <p align="left">
