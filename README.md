@@ -27,7 +27,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 
 ## Setup
 
-1. Add a view, and set the class of the view view to `InteractiveImageView`.
+1. Add a view, and set the class of the view to `InteractiveImageView`.
 2. In your view controller, import InteractiveImageView.
 3. Connect view outlet, configure it with `interactiveImageView.configure(...)`
 4. Add delegates `interactiveImageView.delegate = self`
