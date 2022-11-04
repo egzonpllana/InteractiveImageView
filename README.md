@@ -66,6 +66,15 @@ interactiveImageView.isScrollEnabled = false
 ```swift
 interactiveImageView.isPinchAllowed = false
 ```
+#### Delegate methods
+```swift
+protocol InteractiveImageViewDelegate: AnyObject {
+    func didCropImage(image: UIImage, fromView: InteractiveImageView)
+    func didScrollAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
+    func didZoomAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
+    func didFail(_ fail: IIVFailType)
+}
+```
 
 ## Example Project
 You can download and run example project `InteractiveImageViewExample`.
