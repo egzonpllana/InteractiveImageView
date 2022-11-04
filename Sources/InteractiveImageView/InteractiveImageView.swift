@@ -111,11 +111,11 @@ public class InteractiveImageView: UIView {
 // MARK: - InteractiveImageViewProtocol
 
 extension InteractiveImageView: InteractiveImageViewProtocol {
-    public func configure(withNextContentMode nextContentMode: IIVContentMode, withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage) {
+    public func configure(withNextContentMode nextContentMode: IIVContentMode, withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage?) {
         configure(withNextContentMode: nextContentMode, withFocusOffset: focusOffset, withImage: image, withIdentifier: 0)
     }
 
-    public func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage, withIdentifier identifier: Int) {
+    public func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage?, withIdentifier identifier: Int) {
 
         // Setup private properties
         self.nextContentMode = nextContentMode

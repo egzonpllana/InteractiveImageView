@@ -15,14 +15,14 @@ public protocol InteractiveImageViewProtocol {
     ///   - focusOffset: Initial focus mode of the image view, center or top.
     ///   - image: Image to interact with.
     ///   - identifier: This identifier represents UIView tag.
-    func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage, withIdentifier identifier: Int)
+    func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage?, withIdentifier identifier: Int)
 
     /// Setup initial properties of the view.
     /// - Parameters:
     ///   - nextContentMode: Next content mode, for example heightFill.
     ///   - focusOffset: Initial focus mode of the image view, center or top.
     ///   - image: Image to interact with.
-    func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage)
+    func configure(withNextContentMode nextContentMode: IIVContentMode,  withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage?)
 
     /// Set image view focus properties with content offset and zoom scale.
     /// - Parameters:
