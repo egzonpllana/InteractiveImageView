@@ -41,8 +41,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 if let image = UIImage(named: "image.png") {
     interactiveImageView.configure(withNextContentMode: .heightFill,
                       withFocusOffset: .center,
-                      withImage: image,
-                      withIdentifier: 0)
+                      withImage: image)
 }
 ```
 #### Crop and get image without delegate methods
