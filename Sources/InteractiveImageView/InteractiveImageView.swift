@@ -171,7 +171,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
 
     public func toggleImageContentMode() {
         guard let configuredImage = configuredImage else {
-            delegate?.didFail(.togglingContentMode)
+            delegate?.didFail(.toggleContentModeFailed)
             return
         }
 
@@ -184,7 +184,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         if let image = croppedImage {
             self.delegate?.didCropImage(image: image, fromView: self)
         } else {
-            delegate?.didFail(.imageCropping)
+            delegate?.didFail(.cropImageFailed)
         }
     }
 
@@ -215,12 +215,12 @@ private extension InteractiveImageView {
 
     func cropImage() -> UIImage? {
         guard let imageView = imageView else {
-            delegate?.didFail(.toGetImageView)
+            delegate?.didFail(.getImageViewFailed)
             return nil
         }
 
         guard let image = imageView.image else {
-            delegate?.didFail(.toGetImageFromImageView)
+            delegate?.didFail(.getImageFailed)
             return nil
         }
         let cropRect = CGRect(x: scrollViewOffsetX,
@@ -245,7 +245,7 @@ private extension InteractiveImageView {
         imageView = UIImageView(image: image)
 
         guard let imageView = imageView else {
-            delegate?.didFail(.toGetImageView)
+            delegate?.didFail(.getImageViewFailed)
             return
         }
 
@@ -286,7 +286,7 @@ private extension InteractiveImageView {
 
     func adjustFrameToCenterWhenZoomed() {
         guard let unwrappedZoomView = imageView else {
-            delegate?.didFail(.adjustingFramesWhenZooming)
+            delegate?.didFail(.adjustFramesWhenZoomingFailed)
             return
         }
         var frameToCenter = unwrappedZoomView.frame

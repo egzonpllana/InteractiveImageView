@@ -9,9 +9,9 @@
 import Foundation
 
 public enum IIVFailType {
-    case imageCropping
-    case togglingContentMode
-    case adjustingFramesWhenZooming
-    case toGetImageView
-    case toGetImageFromImageView
+    case cropImageFailed
+    case toggleContentModeFailed
+    case adjustFramesWhenZoomingFailed
+    case getImageViewFailed
+    case getImageFailed
 }
