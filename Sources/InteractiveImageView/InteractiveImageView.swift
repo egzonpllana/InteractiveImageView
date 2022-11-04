@@ -38,8 +38,12 @@ public protocol InteractiveImageViewProtocol {
     func performCropImage()
 
     /// Crop and get presented image.
-    /// - Returns: Returns image croped at current visible content.
+    /// - Returns: UIImage?
     func cropAndGetImage() -> UIImage?
+
+    /// Set UIImageView image without changing other IIV view attributes.
+    /// - Parameter image: UIImage?
+    func setImage(_ image: UIImage?)
 }
 
 public class InteractiveImageView: UIView {
@@ -187,6 +191,10 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
 
     public func cropAndGetImage() -> UIImage? {
         return cropImage()
+    }
+
+    public func setImage(_ image: UIImage?) {
+        imageView?.image = nil
     }
 }
 
