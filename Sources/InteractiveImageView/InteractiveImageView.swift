@@ -44,6 +44,10 @@ public protocol InteractiveImageViewProtocol {
     /// Set UIImageView image without changing other IIV view attributes.
     /// - Parameter image: UIImage?
     func setImage(_ image: UIImage?)
+
+    /// Get initial state of the image without any modifications.
+    /// - Returns: UIImage?
+    func getOriginalImage() -> UIImage?
 }
 
 public class InteractiveImageView: UIView {
@@ -148,7 +152,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         self.nextContentMode = nextContentMode
         self.configuredImage = image
         self.initialOffset = focusOffset
-        self.setImage(image)
+        self.setImageViewImage(image)
 
         // Set view identifier
         self.tag = identifier
@@ -172,7 +176,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         }
 
         imageContentMode = (imageContentMode != nextContentMode) ? nextContentMode : .aspectFill
-        setImage(configuredImage)
+        setImageViewImage(configuredImage)
     }
 
     public func performCropImage() {
@@ -194,7 +198,11 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
     }
 
     public func setImage(_ image: UIImage?) {
-        imageView?.image = nil
+        setImageViewImage(image)
+    }
+
+    public func getOriginalImage() -> UIImage? {
+        return imageView?.image
     }
 }
 
@@ -223,7 +231,7 @@ private extension InteractiveImageView {
         return croppedImage
     }
 
-    func setImage(_ image: UIImage) {
+    func setImageViewImage(_ image: UIImage?) {
         // Remove old view
         if let zoomView = imageView {
             zoomView.removeFromSuperview()
@@ -238,12 +246,12 @@ private extension InteractiveImageView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(InteractiveImageView.doubleTapGestureRecognizer(_:)))
         tapGesture.numberOfTapsRequired = 2
         imageView!.addGestureRecognizer(tapGesture)
-        configureImageForSize(image.size)
+        configureImageForSize(image?.size ?? CGSize.zero)
     }
 
     func refresh() {
         if let image = imageView?.image {
-            setImage(image)
+            setImageViewImage(image)
         }
     }
 
