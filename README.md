@@ -48,6 +48,14 @@ if let image = UIImage(named: "image.png") {
 ```swift
 let croppedImage = interactiveImageView.cropAndGetImage()
 ```
+#### Get original image without any modification on it.
+```swift
+let originalImage = interactiveImageView.getOriginalImage()
+```
+#### Set only image in the ImageView.
+```swift
+interactiveImageView.setImage(UIImage)
+```
 #### Toggle image content mode
 ```swift
 interactiveImageView.toggleImageContentMode()
@@ -66,7 +74,7 @@ interactiveImageView.isScrollEnabled = false
 ```swift
 interactiveImageView.isPinchAllowed = false
 ```
-#### Delegate methods
+## Delegate methods
 ```swift
 protocol InteractiveImageViewDelegate: AnyObject {
     func didCropImage(image: UIImage, fromView: InteractiveImageView)
