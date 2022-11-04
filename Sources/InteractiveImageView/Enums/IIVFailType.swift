@@ -13,4 +13,5 @@ public enum IIVFailType {
     case togglingContentMode
     case adjustingFramesWhenZooming
     case toGetImageView
+    case toGetImageFromImageView
 }

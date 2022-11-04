@@ -219,15 +219,19 @@ private extension InteractiveImageView {
             return nil
         }
 
+        guard let image = imageView.image else {
+            delegate?.didFail(.toGetImageFromImageView)
+            return nil
+        }
         let cropRect = CGRect(x: scrollViewOffsetX,
                               y: scrollViewOffsetY,
                               width: self.frame.width,
                               height: self.frame.height)
 
-        let croppedImage = IIVCropHandler.cropImage(imageView.image!,
+        let croppedImage = IIVCropHandler.cropImage(image,
                                                                      toRect: cropRect,
                                      viewWidth: IIVImageRect.getImageRect(fromImageView: imageView).width,
-                                     viewHeight: self.imageView!.frame.height)
+                                     viewHeight: imageView.frame.height)
         return croppedImage
     }
 
@@ -239,14 +243,23 @@ private extension InteractiveImageView {
 
         // Add new view
         imageView = UIImageView(image: image)
-        imageView!.isUserInteractionEnabled = true
-        scrollView.addSubview(imageView!)
+
+        guard let imageView = imageView else {
+            delegate?.didFail(.toGetImageView)
+            return
+        }
+
+        imageView.isUserInteractionEnabled = true
+        scrollView.addSubview(imageView)
 
         // Add tap gesture
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(InteractiveImageView.doubleTapGestureRecognizer(_:)))
         tapGesture.numberOfTapsRequired = 2
-        imageView!.addGestureRecognizer(tapGesture)
-        configureImageForSize(image?.size ?? CGSize.zero)
+        imageView.addGestureRecognizer(tapGesture)
+
+        if let image = image {
+            configureImageForSize(image.size)
+        }
     }
 
     func refresh() {
