@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         imageView.isScrollEnabled = true
         imageView.isDoubleTapToZoomAllowed = true
         imageView.isPinchAllowed = false
+        imageView.doubleTapZoomFactor = 3.0
 
     }
 
