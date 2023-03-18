@@ -9,6 +9,9 @@
 import UIKit
 
 public protocol InteractiveImageViewProtocol {
+    /// Double tap scale factor, default value is 2.0.
+    var doubleTapZoomFactor: CGFloat { get set }
+
     /// Setup initial properties of the view.
     /// - Parameters:
     ///   - nextContentMode: Next content mode, for example heightFill.

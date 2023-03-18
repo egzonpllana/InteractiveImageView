@@ -20,6 +20,7 @@ public class InteractiveImageView: UIView {
     // MARK: - Properties
 
     public weak var delegate: InteractiveImageViewDelegate?
+    public var doubleTapZoomFactor: CGFloat = 2.0
     public var isScrollEnabled: Bool = true {
         didSet {
             scrollView.isScrollEnabled = isScrollEnabled
@@ -43,7 +44,7 @@ public class InteractiveImageView: UIView {
     private var scrollViewOffsetX: CGFloat = 0.0
     private var pointToCenterAfterResize: CGPoint = CGPoint.zero
     private var scaleToRestoreAfterResize: CGFloat = 1.0
-    private var maxScaleFromMinScale: CGFloat = 3.0
+    private var maxScaleFromMinScale: CGFloat = 999.0 // max scale factor
 
     // MARK: - Initialization
 
@@ -248,8 +249,8 @@ private extension InteractiveImageView {
         zoomRect.size.width  = frame.size.width  / scale
 
         // choose an origin so as to get the right center.
-        zoomRect.origin.x    = center.x - (zoomRect.size.width  / 2.0)
-        zoomRect.origin.y    = center.y - (zoomRect.size.height / 2.0)
+        zoomRect.origin.x    = center.x - (zoomRect.size.width  / doubleTapZoomFactor)
+        zoomRect.origin.y    = center.y - (zoomRect.size.height / doubleTapZoomFactor)
 
         return zoomRect
     }
@@ -365,7 +366,7 @@ private extension InteractiveImageView {
         let boundsCenter = convert(pointToCenterAfterResize, to: imageView)
 
         // calculate the content offset that would yield that center point
-        var offset = CGPoint(x: boundsCenter.x - bounds.size.width/2.0, y: boundsCenter.y - bounds.size.height/2.0)
+        var offset = CGPoint(x: boundsCenter.x - bounds.size.width/doubleTapZoomFactor, y: boundsCenter.y - bounds.size.height/doubleTapZoomFactor)
 
         // restore offset, adjusted to be within the allowable range
         let maxOffset = maximumContentOffset()
@@ -404,12 +405,11 @@ private extension InteractiveImageView {
         guard isDoubleTapToZoomAllowed else { return }
 
         // zoom out if it bigger than the scale factor after double-tap scaling. Else, zoom in
-        let zoomFactorWhenDoubleTap: CGFloat = 2.0
-        if scrollView.zoomScale >= scrollView.minimumZoomScale * zoomFactorWhenDoubleTap - 0.01 {
+        if scrollView.zoomScale != scrollView.minimumZoomScale {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         } else {
             let center = gestureRecognizer.location(in: gestureRecognizer.view)
-            let zoomRect = zoomRectForScale(zoomFactorWhenDoubleTap * scrollView.minimumZoomScale, center: center)
+            let zoomRect = zoomRectForScale(doubleTapZoomFactor * scrollView.minimumZoomScale, center: center)
             scrollView.zoom(to: zoomRect, animated: true)
         }
     }
