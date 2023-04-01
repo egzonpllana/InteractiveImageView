@@ -48,6 +48,10 @@ public protocol InteractiveImageViewProtocol {
     /// - Parameter image: UIImage?
     func setImage(_ image: UIImage?)
 
+    /// Update only UIImageView image property without changing other attributes.
+    /// - Parameter image: UIImage?
+    func updateImage(_ image: UIImage?)
+
     /// Get initial state of the image without any modifications.
     /// - Returns: UIImage?
     func getOriginalImage() -> UIImage?

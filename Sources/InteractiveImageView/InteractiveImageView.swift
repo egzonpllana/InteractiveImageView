@@ -172,6 +172,10 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         configuredImage = image
     }
 
+    public func updateImage(_ image: UIImage?) {
+        self.imageView?.image = image
+    }
+
     public func getOriginalImage() -> UIImage? {
         return imageView?.image
     }
