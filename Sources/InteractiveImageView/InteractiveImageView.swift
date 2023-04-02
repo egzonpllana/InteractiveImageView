@@ -173,7 +173,10 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
     }
 
     public func updateImage(_ image: UIImage?) {
-        self.imageView?.image = image
+        let contentOffset = scrollView.contentOffset
+        let zoomScale = scrollView.zoomScale
+        setImage(image)
+        setContentOffset(contentOffset, animated: false, zoomScale: zoomScale)
     }
 
     public func getOriginalImage() -> UIImage? {
@@ -431,15 +434,15 @@ extension InteractiveImageView: UIScrollViewDelegate {
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) { }
 
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        delegate?.didScrollAt(offset: CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y), scale: scrollView.zoomScale, fromView: self)
-    }
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) { }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) { }
 
     public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) { }
 
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) { }
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        delegate?.didScrollAt(offset: scrollView.contentOffset, scale: scrollView.zoomScale, fromView: self)
+    }
 
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) { }
 
