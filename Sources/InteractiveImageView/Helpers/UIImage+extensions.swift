@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - Rotate image -
-extension UIImage {
+public extension UIImage {
     func rotated(by degrees: CGFloat) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
