@@ -8,13 +8,38 @@
 
 import UIKit
 
+/// A protocol to handle interactions with an `InteractiveImageView`.
 public protocol InteractiveImageViewDelegate: AnyObject {
+    /// Called when an image is cropped.
+    ///
+    /// - Parameters:
+    ///   - image: The cropped image.
+    ///   - fromView: The `InteractiveImageView` instance where the image was cropped.
     func didCropImage(image: UIImage, fromView: InteractiveImageView)
+    
+    /// Called when the user scrolls on the interactive image view.
+    ///
+    /// - Parameters:
+    ///   - offset: The content offset of the scroll view.
+    ///   - scale: The current scale of the image.
+    ///   - fromView: The `InteractiveImageView` instance where the scroll occurred.
     func didScrollAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
+    
+    /// Called when the user zooms on the interactive image view.
+    ///
+    /// - Parameters:
+    ///   - offset: The content offset of the scroll view.
+    ///   - scale: The current scale of the image.
+    ///   - fromView: The `InteractiveImageView` instance where the zoom occurred.
     func didZoomAt(offset: CGPoint, scale: CGFloat, fromView: InteractiveImageView)
+    
+    /// Called when there's a failure during interaction with the `InteractiveImageView`.
+    ///
+    /// - Parameter fail: The type of failure encountered.
     func didFail(_ fail: IIVFailType)
 }
 
+/// A custom `UIView` subclass that provides interactive functionalities for displaying and manipulating images.
 public class InteractiveImageView: UIView {
 
     // MARK: - Public Properties -
