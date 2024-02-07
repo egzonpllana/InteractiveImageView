@@ -38,7 +38,6 @@ class ViewController: UIViewController {
         imageView.isDoubleTapToZoomAllowed = true
         imageView.isPinchAllowed = false
         imageView.doubleTapZoomFactor = 3.0
-
     }
 
     // MARK: - Actions
