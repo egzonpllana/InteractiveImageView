@@ -25,6 +25,7 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 - [X] Can be extended to support different aspect rations.
 - [X] Scroll image view on x and y axis.
 - [X] Double tap to zoom in or zoom out.
+- [X] Rotate image by given degrees.
 - [X] Pinch image view.
 
 ## Setup
