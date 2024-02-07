@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A protocol defining methods to interact with an image within an `InteractiveImageView`.
 public protocol InteractiveImageViewProtocol {
     /// Double tap scale factor, default value is 2.0.
     var doubleTapZoomFactor: CGFloat { get set }
@@ -41,18 +42,31 @@ public protocol InteractiveImageViewProtocol {
     func performCropImage()
 
     /// Crop and get presented image.
+    ///
     /// - Returns: UIImage?
     func cropAndGetImage() -> UIImage?
 
-    /// Set UIImageView image without changing other IIV view attributes.
-    /// - Parameter image: UIImage?
-    func setImage(_ image: UIImage?)
-
-    /// Update only UIImageView image property without changing other attributes.
-    /// - Parameter image: UIImage?
-    func updateImage(_ image: UIImage?)
-
-    /// Get initial state of the image without any modifications.
-    /// - Returns: UIImage?
+    /// Updates the image displayed in the interactive image view.
+    ///
+    /// - Parameter image: The new image to be displayed.
+    func updateImageOnly(_ image: UIImage?)
+    
+    /// Updates the image view with the provided image.
+    ///
+    /// - Parameter image: The image to be displayed.
+    func updateImageView(withImage image: UIImage?)
+    
+    /// Retrieves the original image displayed in the interactive image view.
+    ///
+    /// - Returns: The original image displayed in the interactive image view.
     func getOriginalImage() -> UIImage?
+    
+    /// Rotates the image displayed in the interactive image view by the specified degrees.
+    ///
+    /// - Parameters:
+    ///   - degrees: The angle, in degrees, by which to rotate the image.
+    ///   - keepChanges: A Boolean value that determines whether the changes made to the image (e.g., cropping or scaling) should be preserved after rotation.
+    ///                  If `true`, the rotated image will be based on the current state of the image view, preserving any previous changes.
+    ///                  If `false`, the original image will be reset and then rotated, discarding any previous changes made to the image.
+    func rotateImage(_ degrees: CGFloat, keepChanges: Bool)
 }
