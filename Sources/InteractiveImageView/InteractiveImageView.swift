@@ -17,8 +17,7 @@ public protocol InteractiveImageViewDelegate: AnyObject {
 
 public class InteractiveImageView: UIView {
 
-    // MARK: - Properties
-
+    // MARK: - Public Properties -
     public weak var delegate: InteractiveImageViewDelegate?
     public var doubleTapZoomFactor: CGFloat = 2.0
     public var isScrollEnabled: Bool = true {
@@ -33,11 +32,13 @@ public class InteractiveImageView: UIView {
     }
     public var isDoubleTapToZoomAllowed: Bool = true
 
+    // MARK: - Private Properties -
     private var scrollView: UIScrollView = UIScrollView()
-    private var imageView: UIImageView? = nil
+    private var imageView: UIImageView? = .none
+    private var originalImage: UIImage? = .none
     private var imageContentMode: IIVContentMode = .aspectFill
     private var nextContentMode: IIVContentMode = .aspectFit
-    private var configuredImage: UIImage? = nil
+    private var configuredImage: UIImage? = .none
     private var imageSize: CGSize = CGSize.zero
     private var initialOffset: IIVFocusOffset = .begining
     private var scrollViewOffsetY: CGFloat = 0.0
@@ -46,8 +47,7 @@ public class InteractiveImageView: UIView {
     private var scaleToRestoreAfterResize: CGFloat = 1.0
     private var maxScaleFromMinScale: CGFloat = 999.0 // max scale factor
 
-    // MARK: - Initialization
-
+    // MARK: - Initialization -
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -87,14 +87,12 @@ public class InteractiveImageView: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(InteractiveImageView.changeOrientationNotification), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
-    // MARK: - Deinitialization
-
+    // MARK: - Deinitialization -
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: - Overrides
-
+    // MARK: - Overrides -
     public override var frame: CGRect {
         willSet {
             if frame.equalTo(newValue) == false && newValue.equalTo(CGRect.zero) == false && imageSize.equalTo(CGSize.zero) == false {
@@ -109,8 +107,7 @@ public class InteractiveImageView: UIView {
     }
 }
 
-// MARK: - InteractiveImageViewProtocol
-
+// MARK: - InteractiveImageViewProtocol -
 extension InteractiveImageView: InteractiveImageViewProtocol {
     public func configure(withNextContentMode nextContentMode: IIVContentMode, withFocusOffset focusOffset: IIVFocusOffset, withImage image: UIImage?) {
         configure(withNextContentMode: nextContentMode, withFocusOffset: focusOffset, withImage: image, withIdentifier: 0)
@@ -123,6 +120,7 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         self.configuredImage = image
         self.initialOffset = focusOffset
         self.setImageViewImage(image)
+        originalImage = image
 
         // Set view identifier
         self.tag = identifier
@@ -167,29 +165,41 @@ extension InteractiveImageView: InteractiveImageViewProtocol {
         return cropImage()
     }
 
-    public func setImage(_ image: UIImage?) {
+    public func updateImageOnly(_ image: UIImage?) {
         setImageViewImage(image)
         configuredImage = image
     }
 
-    public func updateImage(_ image: UIImage?) {
+    public func updateImageView(withImage image: UIImage?) {
         let contentOffset = scrollView.contentOffset
         let zoomScale = scrollView.zoomScale
-        setImage(image)
+        updateImageOnly(image)
         setContentOffset(contentOffset, animated: false, zoomScale: zoomScale)
     }
 
     public func getOriginalImage() -> UIImage? {
         return imageView?.image
     }
+    
+    public func rotateImage(_ degrees: CGFloat, keepChanges: Bool) {
+        if keepChanges, let currentImage = imageView?.image, let rotatedImage = currentImage.rotated(by: degrees) {
+            updateImageOnly(rotatedImage)
+        } else {
+            guard let originalImage else {
+                print("There was an error getting original image.")
+                return
+            }
+            let rotatedImage = originalImage.rotated(by: degrees)!
+            updateImageOnly(rotatedImage)
+        }
+    }
 }
 
-// MARK: - Private extension
-
-// Inspired by:
-// https://github.com/huynguyencong/ImageScrollView
-
+// MARK: - Private extension -
 private extension InteractiveImageView {
+    
+    // Inspired by:
+    // https://github.com/huynguyencong/ImageScrollView
 
     func cropImage() -> UIImage? {
         guard let imageView = imageView else {
@@ -397,8 +407,7 @@ private extension InteractiveImageView {
     }
 }
 
-// MARK: - Observers methods
-
+// MARK: - Observers methods -
 private extension InteractiveImageView {
     @objc private func changeOrientationNotification() {
         // Reload UI in main thread
@@ -422,8 +431,7 @@ private extension InteractiveImageView {
     }
 }
 
-// MARK: - UIScrollViewDelegate
-
+// MARK: - UIScrollViewDelegate -
 extension InteractiveImageView: UIScrollViewDelegate {
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
