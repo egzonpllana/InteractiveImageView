@@ -60,6 +60,10 @@ interactiveImageView.setImage(UIImage)
 ```swift
 interactiveImageView.toggleImageContentMode()
 ```
+#### Rotate image
+```swift
+interactiveImageView.rotateImage(UIImage, keepChanges: Bool)
+```
 
 ## User gestures
 #### Double tap to zoom gesture
