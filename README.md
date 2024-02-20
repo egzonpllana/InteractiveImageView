@@ -28,6 +28,11 @@ Welcome to **Interactive Image View**, a simple library that provides an easier 
 - [X] Rotate image by given degrees.
 - [X] Pinch image view.
 
+### Preview
+<p align="left">
+    <img src="example-preview.gif" width="380" max-height="50%" alt=“InteractiveImageView” />
+</p>
+
 ## Setup
 
 1. Add a view, and set the class of the view to `InteractiveImageView`.
@@ -91,11 +96,6 @@ protocol InteractiveImageViewDelegate: AnyObject {
 
 ## Example Project
 You can download and run example project `InteractiveImageViewExample`.
-
-### Preview
-<p align="left">
-    <img src="example-preview.gif" width="380" max-height="50%" alt=“InteractiveImageView” />
-</p>
 
 ## Installation
 
