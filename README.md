@@ -60,7 +60,11 @@ let originalImage = interactiveImageView.getOriginalImage()
 ```
 #### Set only image in the ImageView.
 ```swift
-interactiveImageView.setImage(UIImage)
+interactiveImageView.updateImageView(withImage image: UIImage?)
+```
+#### Update image in the ImageView.
+```swift
+interactiveImageView.uupdateImageOnly(_ image: UIImage?)
 ```
 #### Toggle image content mode
 ```swift
