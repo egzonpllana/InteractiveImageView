@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'InteractiveImageView'
-  s.version          = '1.0.27'
+  s.version          = '1.0.28'
   s.summary          = 'Simple UIView to interact with UIImageView like scroll, zoom, rotate, pinch and crop.'
   s.homepage         = 'https://github.com/egzonpllana/InteractiveImageView'
   s.license          = { :type => 'MIT', :file => 'LICENSE.md' }
